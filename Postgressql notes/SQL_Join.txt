@@ -1,0 +1,28 @@
+-- 17 value
+-- SELECT * FROM posts left join public."user" on posts.owner_id = "user".id
+
+
+-- 22 value
+-- SELECT * FROM posts right join public."user" on posts.owner_id = "user".id
+
+-- 17 value
+-- SELECT * FROM posts Inner join public."user" on posts.owner_id = "user".id
+
+-- SELECT * FROM posts left outer join public."user" on posts.owner_id = "user".id
+
+
+-- SELECT * FROM posts right outer join public."user" on posts.owner_id = "user".id
+
+
+-- count(*) treat null as 1
+-- SELECT public."user".id FROM posts left  join public."user" on posts.owner_id = "user".id group by public.user.id
+-- SELECT public."user".id,count(*) FROM posts left  join public."user" on posts.owner_id = "user".id group by public.user.id
+-- SELECT posts.owner_id,count(*) FROM posts left  join public."user" on posts.owner_id = "user".id group by posts.owner_id
+
+
+
+-- select votes.post_id,count(*) from posts left join votes on posts.id=votes.post_id,votes.post_id is null group by votes.post_id
+
+SELECT posts.id AS post_id,COUNT(votes.post_id) AS vote_count FROM posts
+LEFT JOIN votes ON posts.id = votes.post_id
+GROUP BY posts.id;

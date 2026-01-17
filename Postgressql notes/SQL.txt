@@ -1,0 +1,82 @@
+| Join Type           | What it returns        |
+| ------------------- | ---------------------- |
+| **LEFT JOIN**       | All A + A intersection b
+| **LEFT ANTI JOIN**  | A-(A intersection b)
+| **RIGHT JOIN**      | All B + A intersection b     |
+| **RIGHT ANTI JOIN** | B-(A intersection b)
+
+Super-easy memory trick
+JOIN → keeps the whole table
+ANTI JOIN → removes the intersection
+LEFT → focus on A
+RIGHT → focus on B
+
+
+
+-- SELECT * FROM products;
+
+
+-- SELECT id as product_id ,is_sale as on_sale FROM products
+-- ORDER BY id ASC ;
+
+
+-- SELECT id,name,inventory FROM products where id = 5 ;
+
+
+-- SELECT * FROM products where inventory>=5 or price<3500000 and id>=5 ;
+-- SELECT * FROM products where (inventory>=5 or price<3500000) and id>=5 ;
+-- SELECT * FROM products where id IN (1,2,3,4,5,6,7,8);
+-- SELECT * FROM products where id  BETWEEN 1 AND 8;
+-- SELECT * FROM products where name like 'TV%'
+
+-- anything  ends with e
+-- SELECT * FROM products where name like '%e';
+
+-- anything  has letter with en
+-- SELECT * FROM products where name like '%en%'
+
+-- anything  has letter with a and r
+-- SELECT * FROM products where name like '%a%' and name like '%r%'
+-- SELECT * FROM products where name like '%a%' or  name like'%r%'
+
+-- SELECT * FROM products where name like '% %'
+
+-- SELECT * FROM products where name not like '%e'
+
+-- SELECT * FROM products where name not like '%e'
+
+-- SELECT * FROM products
+
+-- SELECT * FROM products ORDER BY price
+
+-- SELECT * FROM products ORDER BY price*inventory,name
+-- or
+-- SELECT *,price * inventory AS total_value FROM products ORDER BY total_value DESC, name ASC,price DESC;
+
+-- Sorts first by price * inventory (total value)
+-- Default order is ASC (lowest → highest)
+-- Then sorts by name for rows with the same total value
+
+-- to skip first n result we use offset n
+-- select * from products ORDER BY id DESC limit 5 OFFSET 2
+
+
+-- insert into products (name,price,inventory) values('tortilla',2352,5)
+
+-- select * from products where name like 'tortilla'
+
+-- insert into products (name,price,inventory) values('Activa',110002,5) returning *;
+-- insert into products (name,price,inventory) values('Scooter',90002,5),('Cycle',10000,5) returning *;
+
+
+
+-- select * from products 
+-- DELETE from products where id=13 returning *;
+-- DELETE from products where id=12 returning *;
+
+-- WRONG USE SINGLE '' Update products SET name= "Umbrella", price=0 where id=15 ;
+Update products SET name= 'Umbrellas', price=0 where id=15 returning *;
+Update products SET name= 'Umbrella', price=0 where id=15 ;
+Update products SET name= 'Umbrella', price=0 where id=15 ;
+Update products SET name= 'Umbrella', price=0 where id=15 ;
+
